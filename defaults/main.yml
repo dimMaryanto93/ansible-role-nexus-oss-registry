@@ -1,9 +1,9 @@
 ---
 # defaults file for ansible-role-sonatype-nexus-oss-registry
 nexus_admin_user: admin
-nexus_admin_password: passwordnyaAdmin
+nexus_admin_password: admin123
 nexus_default_baseurl: '/service/rest'
-nexus_default_host: '192.168.100.250'
+nexus_default_host: 'localhost'
 nexus_default_port: '8081'
 nexus_default_proto: tcp
 nexus_default_schema: 'http'
