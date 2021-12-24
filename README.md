@@ -1,4 +1,4 @@
-`dimmaryanto93.sonatype_nexus_osssonatype_nexus_oss_registry`
+`dimmaryanto93.sonatype_nexus_oss_registry`
 =========
 
 Repository ini digunakan untuk meng-konfigurasi registry pada Sonatype Nexus OSS menggunakan Rest API seperti 
@@ -83,7 +83,7 @@ Including an example of how to use your role (for instance, with variables passe
     docker_registry_group_port: '8086'
     nexus_registry_docker_repositories: []
   roles:
-      - dimmaryanto93.sonatype_nexus_osssonatype_nexus_oss_registry 
+    - dimmaryanto93.sonatype_nexus_oss_registry 
 ```
 
 License
