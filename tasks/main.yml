@@ -17,7 +17,7 @@
         - "{{ docker_registry_group_port }}"
       when: ansible_facts['os_family'] == 'Debian'
     
-    - name: firewall-cmd allow port 8086/8087/8088 tcp
+    - name: firewall-cmd allow port 8086/8087 tcp
       firewalld: 
         port: "{{ item }}/tcp"
         permanent: yes
