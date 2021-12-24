@@ -1,2 +1,28 @@
 ---
-# tasks file for ansible-role-sonatype-nexus-oss-registry
+- name: Add docker registry to nexus-oss
+  include_tasks: docker-registry.yaml
+  when: nexus_registry_docker_enabled
+
+- name: Iptables config docker registry
+  when: nexus_registry_docker_enabled
+  become: true
+  block:
+    - name: UFW allow port 8086/8087 tcp
+      ufw: 
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - "{{ docker_registry_hosted_port }}"
+        - "{{ docker_registry_group_port }}"
+      when: ansible_facts['os_family'] == 'Debian'
+    
+    - name: firewall-cmd allow port 8086/8087/8088 tcp
+      firewalld: 
+        port: "{{ item }}/tcp"
+        permanent: yes
+        state: enabled
+      loop:
+        - "{{ docker_registry_hosted_port }}"
+        - "{{ docker_registry_group_port }}"
+      when: ansible_facts['os_family'] == 'RedHat'

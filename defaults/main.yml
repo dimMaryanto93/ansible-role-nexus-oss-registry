@@ -1,2 +1,26 @@
 ---
 # defaults file for ansible-role-sonatype-nexus-oss-registry
+nexus_admin_user: admin
+nexus_admin_password: passwordnyaAdmin
+nexus_default_baseurl: '/service/rest'
+nexus_default_host: '192.168.100.250'
+nexus_default_port: '8081'
+nexus_default_proto: tcp
+nexus_default_schema: 'http'
+nexus_default_storage_name: default
+## docker config
+nexus_registry_docker_enabled: true
+docker_registry_hosted_name: 'docker-registry'
+docker_registry_hosted_port: '8087'
+docker_registry_group_name: 'docker-public-group'
+docker_registry_group_port: '8086'
+nexus_registry_docker_repositories: 
+  - name: docker-hub
+    storage_name: default
+    remote_url: 'https://registry-1.docker.io'
+    index_type: 'HUB'
+    index_url: 'https://index.docker.io/'
+  - name: k8s-gcr-io-proxy
+    storage_name: default
+    remote_url: 'https://k8s.gcr.io'
+    index_type: 'REGISTRY'
