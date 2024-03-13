@@ -24,7 +24,20 @@ nexus_registry_docker_repositories:
     storage_name: default
     remote_url: 'https://k8s.gcr.io'
     index_type: 'REGISTRY'
+# setup realms to allow docker pull the registry
 nexus_realms_active: 
   - NexusAuthenticatingRealm
   - DockerToken
   - NpmToken
+# setup new roles
+nexus_role_id: nx-docker-pull
+nexus_role_privileges:
+  - nx-repository-admin-docker-docker-hub-browse
+  - nx-repository-admin-docker-docker-hub-read
+  - nx-repository-admin-docker-docker-public-group-browse
+  - nx-repository-admin-docker-docker-public-group-read
+nexus_roles:
+  - nx-anonymous
+## setup new user with roles
+nexus_new_user: test
+nexus_new_user_pass: test

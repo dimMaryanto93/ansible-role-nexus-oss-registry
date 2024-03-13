@@ -1,0 +1,43 @@
+- name: Setting host facts using complex arguments
+  set_fact:
+    users_baseurl: "{{ nexus_url_baseurl }}/v1/security/users"
+
+- name: Create user with read, browse container image
+  block:
+  - name: Check if user is exist
+    uri:
+      url: "{{ users_baseurl }}?userId={{ nexus_new_user }}"
+      user: "{{ nexus_admin_user }}"
+      password: "{{ nexus_admin_password }}"
+      method: GET
+      force_basic_auth: yes
+      status_code: 400
+    failed_when: false
+    register: check_user_exist
+
+  - name: Debug variables check_user_exist
+    debug:
+      msg: "{{ check_user_exist['json'] | length }}"
+
+  - name: Create create iser
+    uri:
+      url: "{{ users_baseurl }}"
+      user: "{{ nexus_admin_user }}"
+      password: "{{ nexus_admin_password }}"
+      method: POST
+      return_content: yes
+      body: 
+        userId: "{{ nexus_new_user }}"
+        firstName: "Container"
+        lastName: "Runtime"
+        emailAddress: "admin@nexus.local"
+        password: "{{ nexus_new_user_pass }}"
+        privileges: "{{ nexus_role_privileges }}"
+        status: "active"
+        roles: 
+          - nx-anonymous
+          - "{{ nexus_role_id }}"
+      force_basic_auth: yes
+      status_code: 200
+      body_format: json
+    when: check_user_exist['json'] | length == 0

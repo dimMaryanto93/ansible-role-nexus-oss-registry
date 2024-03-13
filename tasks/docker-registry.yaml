@@ -1,7 +1,7 @@
 ---
 - name: Setting host facts using complex arguments
   set_fact:
-    docker_registry_baseurl: "{{ nexus_default_schema }}://{{ nexus_default_host }}:{{ nexus_default_port }}{{ nexus_default_baseurl }}/v1/repositories/docker"
+    docker_registry_baseurl: "{{ nexus_url_baseurl }}/v1/repositories/docker"
 
 - name: Docker hosted repository on nexus-oss
   block:

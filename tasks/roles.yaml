@@ -1,0 +1,38 @@
+- name: Setting host facts using complex arguments
+  set_fact:
+    roles_baseurl: "{{ nexus_url_baseurl }}/v1/security/roles"
+
+- name: Create roles with read, browse container image
+  block:
+  - name: Check if roles is exist
+    uri:
+      url: "{{ roles_baseurl }}/{{ nexus_role_id }}"
+      user: "{{ nexus_admin_user }}"
+      password: "{{ nexus_admin_password }}"
+      method: GET
+      force_basic_auth: yes
+      status_code: 400
+    failed_when: false
+    register: check_roles_exist
+
+  - name: Debug variables
+    debug:
+      msg: "{{ check_roles_exist }}"
+
+  - name: Create create role
+    uri:
+      url: "{{ roles_baseurl }}"
+      user: "{{ nexus_admin_user }}"
+      password: "{{ nexus_admin_password }}"
+      method: POST
+      return_content: yes
+      body: 
+        id: "{{ nexus_role_id }}"
+        name: "{{ nexus_role_id }}"
+        description: "-"
+        privileges: "{{ nexus_role_privileges }}"
+        roles: "{{ nexus_roles }}"
+      force_basic_auth: yes
+      status_code: 200
+      body_format: json
+    when: check_roles_exist.status == 404

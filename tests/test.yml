@@ -3,5 +3,7 @@
   vars:
     nexus_admin_user: admin
     nexus_admin_password: passwordnyaR00t
+    nexus_new_user: test
+    nexus_new_user_pass: test
   roles:
     - ../../ansible-role-sonatype-nexus-oss-registry
