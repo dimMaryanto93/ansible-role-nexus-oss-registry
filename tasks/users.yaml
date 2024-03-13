@@ -12,7 +12,7 @@
       method: GET
       return_content: yes
       force_basic_auth: yes
-      status_code: 400
+      status_code: 200
     failed_when: false
     register: check_user_exist
 
