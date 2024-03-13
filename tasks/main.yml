@@ -21,6 +21,7 @@
       firewalld: 
         port: "{{ item }}/tcp"
         permanent: yes
+        immediate: true
         state: enabled
       loop:
         - "{{ docker_registry_hosted_port }}"
