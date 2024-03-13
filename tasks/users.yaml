@@ -10,6 +10,7 @@
       user: "{{ nexus_admin_user }}"
       password: "{{ nexus_admin_password }}"
       method: GET
+      return_content: yes
       force_basic_auth: yes
       status_code: 400
     failed_when: false
@@ -17,7 +18,7 @@
 
   - name: Debug variables check_user_exist
     debug:
-      msg: "{{ check_user_exist | length }}"
+      msg: "{{ check_user_exist.json | length }}"
 
   - name: Create create iser
     uri:
@@ -40,4 +41,4 @@
       force_basic_auth: yes
       status_code: 200
       body_format: json
-    when: check_user_exist | length == 0
+    when: check_user_exist.json | length == 0
