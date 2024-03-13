@@ -1,4 +1,8 @@
 ---
+- name: Add realms docker allow to pull
+  include_tasks: granted-realms-docker.yaml
+  when: nexus_registry_docker_enabled
+
 - name: Add docker registry to nexus-oss
   include_tasks: docker-registry.yaml
   when: nexus_registry_docker_enabled

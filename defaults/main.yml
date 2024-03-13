@@ -24,3 +24,7 @@ nexus_registry_docker_repositories:
     storage_name: default
     remote_url: 'https://k8s.gcr.io'
     index_type: 'REGISTRY'
+nexus_realms_active: 
+  - NexusAuthenticatingRealm
+  - DockerToken
+  - NpmToken

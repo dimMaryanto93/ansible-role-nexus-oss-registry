@@ -151,6 +151,6 @@
           forceBasicAuth: true
           httpPort: "{{ docker_registry_group_port }}"
       force_basic_auth: yes
-      status_code: "201"
+      status_code: 201
       body_format: json
     when: check_docker_group.status == 404

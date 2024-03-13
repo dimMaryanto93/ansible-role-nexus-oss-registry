@@ -1,0 +1,20 @@
+- name: Setting host facts using complex arguments
+  set_fact:
+    nexus_url_baseurl: "{{ nexus_default_schema }}://{{ nexus_default_host }}:{{ nexus_default_port }}{{ nexus_default_baseurl }}"
+
+- name: Set realms to allow docker
+  uri:
+    url: "{{ nexus_url_baseurl }}/v1/security/realms/active"
+    user: "{{ nexus_admin_user }}"
+    password: "{{ nexus_admin_password }}"
+    method: PUT
+    body: "{{ nexus_realms_active }}"
+    force_basic_auth: yes
+    status_code: 204
+    body_format: json
+  failed_when: false
+  register: set_realms_nexus
+
+- name: Debug variables
+  debug:
+    msg: "{{ set_realms_nexus | to_json }}"
