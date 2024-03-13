@@ -15,7 +15,6 @@
   when: 
     - nexus_create_new_user
     - nexus_registry_docker_enabled
-  become: true
   block: 
     - name: Add new roles
       include_tasks: roles.yaml

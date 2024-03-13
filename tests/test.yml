@@ -3,6 +3,7 @@
   vars:
     nexus_admin_user: admin
     nexus_admin_password: passwordnyaR00t
+    nexus_create_new_user: true
     nexus_new_user: test
     nexus_new_user_pass: test
   roles:
