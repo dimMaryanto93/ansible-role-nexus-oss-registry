@@ -3,14 +3,6 @@
   set_fact:
     nexus_url_baseurl: "{{ nexus_default_schema }}://{{ nexus_default_host }}:{{ nexus_default_port }}{{ nexus_default_baseurl }}"
 
-- name: Add new roles
-  include_tasks: roles.yaml
-  when: nexus_registry_docker_enabled
-
-- name: Add new roles
-  include_tasks: users.yaml
-  when: nexus_registry_docker_enabled
-
 - name: Add realms docker allow to pull
   include_tasks: granted-realms-docker.yaml
   when: nexus_registry_docker_enabled
@@ -18,6 +10,19 @@
 - name: Add docker registry to nexus-oss
   include_tasks: docker-registry.yaml
   when: nexus_registry_docker_enabled
+
+- name: Setup new user and roles for docker specific registry
+  when: 
+    - nexus_create_new_user
+    - nexus_registry_docker_enabled
+  become: true
+  block: 
+    - name: Add new roles
+      include_tasks: roles.yaml
+
+    - name: Add new users
+      include_tasks: users.yaml
+      when: nexus_create_new_user
 
 - name: Iptables config docker registry
   when: nexus_registry_docker_enabled

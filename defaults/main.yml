@@ -39,5 +39,6 @@ nexus_role_privileges:
 nexus_roles:
   - nx-anonymous
 ## setup new user with roles
+nexus_create_new_user: false
 nexus_new_user: test
 nexus_new_user_pass: test
