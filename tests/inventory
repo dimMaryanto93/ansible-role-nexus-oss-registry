@@ -1,2 +1,2 @@
-localhost   ansible_host=192.168.100.250    ansible_user=tabeldata
+nexus-oss_host          ansible_port=22 ansible_user=admin ansible_host=10.12.12.5
 

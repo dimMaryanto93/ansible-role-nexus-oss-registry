@@ -1,4 +1,7 @@
 ---
 - hosts: ['all']
+  vars:
+    nexus_admin_user: admin
+    nexus_admin_password: passwordnyaR00t
   roles:
     - ../../ansible-role-sonatype-nexus-oss-registry

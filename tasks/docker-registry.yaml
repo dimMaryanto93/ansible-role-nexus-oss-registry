@@ -145,7 +145,7 @@
           blobStoreName: "{{ nexus_default_storage_name }}"
           strictContentTypeValidation: true
         group:
-          memberNames: "{{ docker_public_group_members | to_json }}"
+          memberNames: "{{ docker_public_group_members }}"
         docker:
           v1Enabled: false
           forceBasicAuth: true
