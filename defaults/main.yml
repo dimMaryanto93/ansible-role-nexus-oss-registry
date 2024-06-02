@@ -36,6 +36,17 @@ nexus_role_privileges:
   - nx-repository-admin-docker-docker-hub-read
   - nx-repository-admin-docker-docker-public-group-browse
   - nx-repository-admin-docker-docker-public-group-read
+  - nx-repository-admin-docker-docker-registry-browse
+  - nx-repository-admin-docker-docker-registry-edit
+  - nx-repository-admin-docker-docker-registry-read
+  - nx-repository-view-docker-docker-public-group-add
+  - nx-repository-view-docker-docker-public-group-browse
+  - nx-repository-view-docker-docker-registry-*
+  - nx-repository-view-docker-docker-registry-add
+  - nx-repository-view-docker-docker-registry-browse
+  - nx-repository-view-docker-docker-registry-delete
+  - nx-repository-view-docker-docker-registry-edit
+  - nx-repository-view-docker-docker-registry-read
 nexus_roles:
   - nx-anonymous
 ## setup new user with roles
